@@ -58,8 +58,10 @@
 
     <!-- Background Music -->
     <audio id="bgMusic" loop>
-      <!-- <source src="https://orangefreesounds.com/wp-content/uploads/2025/04/Emotional-romantic-piano-music.mp3" type="audio/mpeg"> -->
-      <source src="/videoplayback.weba" type="audio/mpeg" />
+      <!-- <source
+        src="https://orangefreesounds.com/wp-content/uploads/2025/04/Emotional-romantic-piano-music.mp3"
+        type="audio/mpeg"
+      /> -->
     </audio>
 
     <!-- ═══ HERO ═══ -->
@@ -72,7 +74,7 @@
         </h1>
         <div class="hero-divider"><span>✦ ✦ ✦</span></div>
         <p class="hero-subtitle">"Together is our favorite place to be."</p>
-        <p class="hero-date">1 · July · 2026</p>
+        <p class="hero-date">13 · June · 2026</p>
         <a href="#countdown" class="hero-cta">Save the Date</a>
       </div>
       <div class="scroll-hint">
@@ -161,20 +163,6 @@
             <div class="detail-value">8:00 PM</div>
           </div>
           <div class="detail-card reveal reveal-delay-2">
-            <div class="detail-icon">👰</div>
-            <div class="detail-label">Bride</div>
-            <div
-              class="detail-value"
-              style="
-                font-family: &quot;Great Vibes&quot;, cursive;
-                font-size: 1.8rem;
-                color: var(--gold);
-              "
-            >
-              Haydy
-            </div>
-          </div>
-          <div class="detail-card reveal reveal-delay-3">
             <div class="detail-icon">🤵</div>
             <div class="detail-label">Groom</div>
             <div
@@ -186,6 +174,20 @@
               "
             >
               Mostafa
+            </div>
+          </div>
+          <div class="detail-card reveal reveal-delay-3">
+            <div class="detail-icon">👰</div>
+            <div class="detail-label">Bride</div>
+            <div
+              class="detail-value"
+              style="
+                font-family: &quot;Great Vibes&quot;, cursive;
+                font-size: 1.8rem;
+                color: var(--gold);
+              "
+            >
+              Haydy
             </div>
           </div>
         </div>
@@ -255,37 +257,65 @@
     </div>
 
     <!-- ═══ RSVP ═══ -->
-    <!-- <section id="rsvp">
-  <div class="section-inner">
-    <p class="section-label reveal" style="text-align:center">Will You Join Us?</p>
-    <h2 class="section-title reveal reveal-delay-1" style="text-align:center">RSVP</h2>
-    <div class="ornament-line reveal reveal-delay-1"><span>✉</span></div>
-    <div class="rsvp-form reveal reveal-delay-2">
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" id="rsvpName" placeholder="Your name" autocomplete="name">
+    <section id="rsvp">
+      <div class="section-inner">
+        <p class="section-label reveal" style="text-align: center">
+          Will You Join Us?
+        </p>
+        <h2
+          class="section-title reveal reveal-delay-1"
+          style="text-align: center"
+        >
+          RSVP
+        </h2>
+        <div class="ornament-line reveal reveal-delay-1"><span>✉</span></div>
+        <div class="rsvp-form reveal reveal-delay-2">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input
+              type="text"
+              id="rsvpName"
+              placeholder="Your name"
+              autocomplete="name"
+            />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input
+              type="tel"
+              id="rsvpPhone"
+              placeholder="+20 xxx xxx xxxx"
+              autocomplete="tel"
+            />
+          </div>
+          <div class="form-group">
+            <label>Will You Attend?</label>
+            <select id="rsvpAttend">
+              <option value="">— Please select —</option>
+              <option value="yes">✓ Yes, I'll be there!</option>
+              <option value="no">✗ Unfortunately, I can't make it</option>
+            </select>
+          </div>
+          <button class="submit-btn" onclick="submitRSVP()">
+            Send Your Reply
+          </button>
+          <div class="rsvp-success" id="rsvpSuccess">
+            <p style="font-size: 2.5rem; color: var(--gold)">♥</p>
+            <p>Thank you! We can't wait to see you.</p>
+            <p
+              style="
+                font-size: 0.9rem;
+                color: var(--text-light);
+                font-family: &quot;Montserrat&quot;, sans-serif;
+                margin-top: 0.5rem;
+              "
+            >
+              نراكم قريباً إن شاء الله 💛
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label>Phone Number</label>
-        <input type="tel" id="rsvpPhone" placeholder="+20 xxx xxx xxxx" autocomplete="tel">
-      </div>
-      <div class="form-group">
-        <label>Will You Attend?</label>
-        <select id="rsvpAttend">
-          <option value="">— Please select —</option>
-          <option value="yes">✓ Yes, I'll be there!</option>
-          <option value="no">✗ Unfortunately, I can't make it</option>
-        </select>
-      </div>
-      <button class="submit-btn" onclick="submitRSVP()">Send Your Reply</button>
-      <div class="rsvp-success" id="rsvpSuccess">
-        <p style="font-size:2.5rem;color:var(--gold)">♥</p>
-        <p>Thank you! We can't wait to see you.</p>
-        <p style="font-size:0.9rem;color:var(--text-light);font-family:'Montserrat',sans-serif;margin-top:0.5rem">نراكم قريباً إن شاء الله 💛</p>
-      </div>
-    </div>
-  </div>
-</section> -->
+    </section>
 
     <!-- ═══ FOOTER ═══ -->
     <footer>
@@ -303,7 +333,7 @@
           text-transform: uppercase;
         "
       >
-        1 September 2027 · 8:00 PM
+        13 June 2026 · 8:00 PM
       </p>
     </footer>
 
