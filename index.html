@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seif & Menna — Engagement Invitation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8d08a;
+    --gold-dark: #9a7535;
+    --blush: #f4c5c5;
+    --blush-dark: #e8a0a0;
+    --cream: #fdf8f0;
+    --bg: #fdf8f0;
+    --text: #3a2e2e;
+    --text-light: #6b5050;
+    --white: #ffffff;
+    --card-bg: rgba(255,255,255,0.85);
+    --nav-bg: rgba(253,248,240,0.95);
+    --shadow: rgba(180,140,100,0.15);
+    --overlay: rgba(30,15,15,0.45);
+    --heart: #c97070;
+  }
+  [data-theme="dark"] {
+    --bg: #1a1010;
+    --cream: #1a1010;
+    --text: #f0e0cc;
+    --text-light: #c0a88a;
+    --card-bg: rgba(40,25,25,0.92);
+    --nav-bg: rgba(20,12,12,0.97);
+    --shadow: rgba(0,0,0,0.4);
+    --overlay: rgba(10,5,5,0.6);
+    --white: #221515;
+    --blush: #7a3535;
+    --blush-dark: #5a2020;
+    --cream-card: #2a1a1a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    transition: background 0.4s, color 0.4s;
+  }
+
+  /* ─── LOADING SCREEN ─── */
+  #loader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: #1a0f0f;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #loader.hidden { opacity: 0; visibility: hidden; }
+  .loader-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    color: var(--gold);
+    opacity: 0;
+    animation: fadeInUp 1s 0.5s forwards;
+  }
+  .loader-hearts {
+    font-size: 1.4rem;
+    color: #c97070;
+    letter-spacing: 0.5rem;
+    opacity: 0;
+    animation: fadeInUp 1s 1s forwards;
+  }
+  .loader-bar {
+    width: 160px; height: 2px;
+    background: rgba(201,168,76,0.2);
+    margin-top: 2rem;
+    border-radius: 1px;
+    overflow: hidden;
+  }
+  .loader-bar-fill {
+    height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+    animation: loadBar 2s 0.3s forwards ease-in-out;
+  }
+  @keyframes loadBar { to { width: 100%; } }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── CONFETTI ─── */
+  #confetti-canvas {
+    position: fixed; inset: 0; z-index: 9998;
+    pointer-events: none;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 0.8rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s, box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 24px var(--shadow); }
+  .nav-logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.6rem;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    font-size: 0.72rem; letter-spacing: 0.12em;
+    text-transform: uppercase; font-weight: 500;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+    height: 1px; background: var(--gold);
+    transform: scaleX(0); transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+  .nav-controls { display: flex; gap: 0.6rem; align-items: center; }
+  .icon-btn {
+    background: none; border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold); cursor: pointer;
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; transition: all 0.2s;
+  }
+  .icon-btn:hover { background: rgba(201,168,76,0.12); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--gold); border-radius: 1px; transition: all 0.3s; }
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; top: 60px;
+    background: var(--nav-bg); backdrop-filter: blur(16px);
+    z-index: 999; flex-direction: column; align-items: center; justify-content: center;
+    gap: 2.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; color: var(--text);
+    text-decoration: none; letter-spacing: 0.05em;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(244,197,197,0.15) 0%, transparent 50%),
+      linear-gradient(160deg, #1a0f0f 0%, #2d1a1a 40%, #1f1010 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+  .hero-names{
+    white-space: nowrap;
+  }
+  .hero-ornament {
+    position: absolute; inset: 0; pointer-events: none;
+    overflow: hidden;
+  }
+  .petal {
+    position: absolute;
+    width: 6px; height: 10px;
+    background: radial-gradient(ellipse, rgba(244,197,197,0.6), rgba(244,197,197,0.1));
+    border-radius: 50% 0 50% 0;
+    animation: fall linear infinite;
+    opacity: 0;
+  }
+  @keyframes fall {
+    0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    5%   { opacity: 1; }
+    95%  { opacity: 0.4; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  }
+  .hero-inner {
+    text-align: center; z-index: 1; max-width: 800px;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.5rem; opacity: 0;
+    animation: fadeInUp 0.9s 2.8s forwards;
+  }
+  .hero-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(3.5rem, 12vw, 8rem);
+    color: var(--white);
+    line-height: 1;
+    opacity: 0;
+    animation: fadeInUp 1s 3s forwards;
+    text-shadow: 0 0 60px rgba(201,168,76,0.3);
+  }
+  [data-theme="light"] .hero-names { color: var(--gold-dark); text-shadow: 0 2px 20px rgba(154,117,53,0.2); }
+  .hero-heart {
+    color: var(--heart);
+    display: inline-block;
+    animation: heartbeat 1.4s ease-in-out infinite;
+  }
+  @keyframes heartbeat {
+    0%,100% { transform: scale(1); }
+    14% { transform: scale(1.15); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.08); }
+    70% { transform: scale(1); }
+  }
+  .hero-divider {
+    display: flex; align-items: center; gap: 1rem;
+    justify-content: center; margin: 1.5rem 0;
+    opacity: 0; animation: fadeInUp 1s 3.2s forwards;
+  }
+  .hero-divider span { color: var(--gold); font-size: 0.5rem; letter-spacing: 0.2em; }
+  .hero-divider::before, .hero-divider::after {
+    content: ''; flex: 1; max-width: 100px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold));
+  }
+  .hero-divider::after { background: linear-gradient(to left, transparent, var(--gold)); }
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: rgba(240,220,190,0.85);
+    opacity: 0; animation: fadeInUp 1s 3.4s forwards;
+    font-weight: 300; letter-spacing: 0.03em;
+  }
+  [data-theme="light"] .hero-subtitle { color: var(--text-light); }
+  .hero-date {
+    font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-top: 1rem;
+    opacity: 0; animation: fadeInUp 1s 3.6s forwards;
+  }
+  .hero-cta {
+    display: inline-block; margin-top: 2.5rem;
+    padding: 0.85rem 2.8rem;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+    text-decoration: none; cursor: pointer;
+    transition: all 0.35s;
+    position: relative; overflow: hidden;
+    opacity: 0; animation: fadeInUp 1s 3.8s forwards;
+  }
+  .hero-cta::before {
+    content: ''; position: absolute; inset: 0;
+    background: var(--gold); transform: scaleX(0);
+    transform-origin: left; transition: transform 0.35s;
+    z-index: -1;
+  }
+  .hero-cta:hover { color: #1a0f0f; }
+  .hero-cta:hover::before { transform: scaleX(1); }
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+    color: rgba(201,168,76,0.5); font-size: 0.6rem; letter-spacing: 0.2em;
+    text-transform: uppercase; animation: bounce 2s ease-in-out infinite;
+  }
+  .scroll-hint svg { width: 16px; opacity: 0.6; }
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 6rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 300; color: var(--text);
+    margin-bottom: 1rem; line-height: 1.15;
+  }
+  .ornament-line {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .ornament-line::before, .ornament-line::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.4));
+  }
+  .ornament-line::after { background: linear-gradient(to left, transparent, rgba(201,168,76,0.4)); }
+  .ornament-line span { color: var(--gold); font-size: 0.6rem; }
+
+  /* ─── REVEAL ─── */
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+
+  /* ─── COUNTDOWN ─── */
+  #countdown {
+    background: linear-gradient(160deg, #120808 0%, #1e0f0f 50%, #120808 100%);
+    position: relative; overflow: hidden;
+  }
+  [data-theme="light"] #countdown {
+    background: linear-gradient(160deg, #f9f0e8 0%, var(--cream) 100%);
+  }
+  #countdown::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.08) 0%, transparent 70%);
+  }
+  .countdown-grid {
+    display: flex; gap: 1.5rem; justify-content: center;
+    flex-wrap: wrap; margin-top: 3rem;
+  }
+  .count-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 2rem 2.5rem;
+    text-align: center; min-width: 120px;
+    box-shadow: 0 8px 40px var(--shadow);
+    position: relative; overflow: hidden;
+  }
+  .count-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .count-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 8vw, 4.5rem);
+    font-weight: 300; color: var(--gold);
+    line-height: 1; display: block;
+    transition: transform 0.25s;
+  }
+  .count-num.flip { transform: scale(1.08); }
+  .count-label {
+    font-size: 0.62rem; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--text-light);
+    margin-top: 0.5rem; display: block;
+  }
+  .countdown-title { text-align: center; }
+  .countdown-title .section-label { justify-content: center; display: flex; }
+
+  /* ─── MESSAGE ─── */
+  #message {
+    text-align: center;
+    background: var(--bg);
+  }
+  .message-arabic {
+    font-family: 'Amiri', serif;
+    font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+    color: var(--text-light);
+    line-height: 2;
+    direction: rtl;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .message-english {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.15rem, 3vw, 1.5rem);
+    color: var(--text-light);
+    font-style: italic;
+    font-weight: 300;
+  }
+  .message-box {
+    max-width: 680px; margin: 0 auto;
+    padding: 3rem;
+    background: var(--card-bg);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 2px;
+    box-shadow: 0 4px 40px var(--shadow);
+    position: relative;
+  }
+  .message-box::before, .message-box::after {
+    font-family: 'Great Vibes', cursive;
+    font-size: 5rem; color: var(--gold);
+    opacity: 0.1; position: absolute;
+    line-height: 1;
+  }
+  .message-box::before { content: '"'; top: -1rem; left: 1rem; }
+  .message-box::after  { content: '"'; bottom: -2.5rem; right: 1rem; }
+
+  /* ─── EVENT DETAILS ─── */
+  #details { background: var(--bg); }
+  .details-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem; margin-top: 2.5rem;
+  }
+  .detail-card {
+    background: var(--card-bg);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 2rem 1.5rem;
+    text-align: center; border-radius: 4px;
+    box-shadow: 0 4px 20px var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .detail-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px var(--shadow); }
+  .detail-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .detail-label {
+    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.4rem;
+  }
+  .detail-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; color: var(--text); font-weight: 400;
+  }
+
+  /* ─── LOCATION ─── */
+  #location { background: var(--bg); }
+  .map-wrap {
+    border-radius: 4px; overflow: hidden;
+    border: 1px solid rgba(201,168,76,0.2);
+    box-shadow: 0 8px 40px var(--shadow);
+    margin-top: 2rem;
+  }
+  .map-wrap iframe { width: 100%; height: 420px; border: none; display: block; filter: sepia(0.15) contrast(1.05); }
+  [data-theme="dark"] .map-wrap iframe { filter: invert(0.85) hue-rotate(180deg) saturate(0.7); }
+  .map-btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 0.85rem 2.2rem;
+    background: var(--gold);
+    color: #1a0f0f;
+    font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px;
+    font-weight: 600;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .map-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* ─── GALLERY ─── */
+  #gallery { background: var(--bg); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem; margin-top: 2.5rem;
+  }
+  .gallery-item {
+    aspect-ratio: 1; overflow: hidden; border-radius: 3px;
+    cursor: pointer; position: relative;
+  }
+  .gallery-item:first-child { grid-column: span 2; aspect-ratio: 2/1; }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+  .gallery-item:hover img { transform: scale(1.08); }
+  .gallery-item::after {
+    content: '⊕'; position: absolute; inset: 0;
+    background: rgba(20,8,8,0.3);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 2rem;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .gallery-item:hover::after { opacity: 1; }
+  /* Lightbox */
+  #lightbox {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,0.92);
+    align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 3px; }
+  .lightbox-close {
+    position: fixed; top: 1.5rem; right: 2rem;
+    background: none; border: none; color: white;
+    font-size: 2rem; cursor: pointer; z-index: 2001;
+    opacity: 0.7; transition: opacity 0.2s;
+  }
+  .lightbox-close:hover { opacity: 1; }
+
+  /* ─── RSVP ─── */
+  #rsvp { background: var(--bg); }
+  .rsvp-form {
+    max-width: 560px; margin: 2rem auto 0;
+    background: var(--card-bg);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 3rem; border-radius: 4px;
+    box-shadow: 0 8px 40px var(--shadow);
+  }
+  .form-group { margin-bottom: 1.5rem; }
+  .form-group label {
+    display: block; font-size: 0.65rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .form-group input, .form-group select {
+    width: 100%; padding: 0.85rem 1rem;
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.25);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.25s;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus, .form-group select:focus { border-color: var(--gold); }
+  .form-group select option { background: var(--bg); }
+  .submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--gold);
+    color: #1a0f0f;
+    border: none; border-radius: 2px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+    font-weight: 600; cursor: pointer;
+    transition: background 0.25s, transform 0.2s;
+  }
+  .submit-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .rsvp-success {
+    display: none; text-align: center;
+    padding: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; color: var(--gold);
+    font-style: italic;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #0e0707;
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    color: rgba(240,220,190,0.6);
+  }
+  [data-theme="light"] footer { background: #2a1a1a; }
+  .footer-names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .footer-message {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 1.1rem;
+    color: rgba(240,220,190,0.7);
+    margin-bottom: 1.5rem;
+  }
+  .footer-hearts {
+    font-size: 1.2rem;
+    color: var(--heart);
+    letter-spacing: 0.3em;
+  }
+  .footer-hearts span { display: inline-block; animation: heartbeat 1.4s ease-in-out infinite; }
+  .footer-hearts span:nth-child(2) { animation-delay: 0.2s; }
+  .footer-hearts span:nth-child(3) { animation-delay: 0.4s; }
+
+  /* ─── FLOATING HEARTS BG ─── */
+  .float-hearts {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+  }
+  .fh {
+    position: absolute; bottom: -20px;
+    font-size: 1rem; opacity: 0;
+    animation: riseHeart linear infinite;
+    color: rgba(201,120,120,0.25);
+  }
+  @keyframes riseHeart {
+    0%   { transform: translateY(0) scale(1); opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(-105vh) scale(1.5) rotate(25deg); opacity: 0; }
+  }
+
+  /* ─── BACK TO TOP ─── */
+  #backTop {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 500;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--gold); color: #1a0f0f;
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+    opacity: 0; visibility: hidden;
+    transition: all 0.3s; transform: translateY(10px);
+  }
+  #backTop.show { opacity: 1; visibility: visible; transform: translateY(0); }
+  #backTop:hover { background: var(--gold-light); transform: translateY(-3px); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .gallery-grid { grid-template-columns: repeat(2,1fr); }
+    .gallery-item:first-child { grid-column: span 2; }
+    section { padding: 4rem 1.2rem; }
+    .rsvp-form { padding: 2rem 1.5rem; }
+    .count-card { padding: 1.5rem 1.5rem; min-width: 90px; }
+  }
+  @media (max-width: 480px) {
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item:first-child { grid-column: span 1; aspect-ratio: 1; }
+    .countdown-grid { gap: 0.8rem; }
+    .count-card { min-width: 70px; padding: 1.2rem 1rem; }
+    .count-num { font-size: 2.2rem; }
+    .hero-names{
+    white-space: nowrap;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+
+  }
+  }
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loader">
+  <div class="loader-names">Mazen &amp; Mariam</div>
+  <div class="loader-hearts">♥ &nbsp; ♥ &nbsp; ♥</div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- Confetti -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Floating Hearts Background -->
+<div class="float-hearts" id="floatHearts"></div>
+
+<!-- Navbar -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">M &amp; M</a>
+  <ul class="nav-links">
+    <li><a href="#countdown">Countdown</a></li>
+    <li><a href="#message">Message</a></li>
+    <li><a href="#details">Details</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <!-- <li><a href="#rsvp">RSVP</a></li> -->
+  </ul>
+  <div class="nav-controls">
+    <button class="icon-btn" id="musicBtn" title="Toggle Music">♪</button>
+    <button class="icon-btn" id="themeBtn" title="Toggle Theme">☀</button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#countdown" onclick="closeMobile()">Countdown</a>
+  <a href="#message"   onclick="closeMobile()">Message</a>
+  <a href="#details"   onclick="closeMobile()">Details</a>
+  <a href="#location"  onclick="closeMobile()">Location</a>
+  <a href="#gallery"   onclick="closeMobile()">Gallery</a>
+  <a href="#rsvp"      onclick="closeMobile()">RSVP</a>
+</div>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <!-- <source src="https://orangefreesounds.com/wp-content/uploads/2025/04/Emotional-romantic-piano-music.mp3" type="audio/mpeg"> -->
+     <source src="/videoplayback.weba" type="audio/mpeg">
+</audio>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-ornament" id="petals"></div>
+  <div class="hero-inner">
+    <p class="hero-eyebrow">You are cordially invited</p>
+    <h1 class="hero-names">
+      Mazen <span class="hero-heart">❤</span> Mariam
+    </h1>
+    <div class="hero-divider"><span>✦ ✦ ✦</span></div>
+    <p class="hero-subtitle">"Together is our favorite place to be."</p>
+    <p class="hero-date">1 · July · 2026</p>
+    <a href="#countdown" class="hero-cta">Save the Date</a>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══ COUNTDOWN ═══ -->
+<section id="countdown">
+  <div class="section-inner">
+    <div class="countdown-title reveal">
+      <p class="section-label">The Moment We've Been Waiting For</p>
+      <h2 class="section-title" style="color:#f0dcc0">Until We Say Forever</h2>
+    </div>
+    <div class="ornament-line reveal reveal-delay-1"><span>♦</span></div>
+    <div class="countdown-grid reveal reveal-delay-2">
+      <div class="count-card">
+        <span class="count-num" id="cDays">000</span>
+        <span class="count-label">Days</span>
+      </div>
+      <div class="count-card">
+        <span class="count-num" id="cHours">00</span>
+        <span class="count-label">Hours</span>
+      </div>
+      <div class="count-card">
+        <span class="count-num" id="cMins">00</span>
+        <span class="count-label">Minutes</span>
+      </div>
+      <div class="count-card">
+        <span class="count-num" id="cSecs">00</span>
+        <span class="count-label">Seconds</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ROMANTIC MESSAGE ═══ -->
+<section id="message">
+  <div class="section-inner" style="text-align:center">
+    <p class="section-label reveal">With Love & Joy</p>
+    <h2 class="section-title reveal reveal-delay-1">A Message From Our Hearts</h2>
+    <div class="ornament-line reveal reveal-delay-1"><span>♥</span></div>
+    <div class="message-box reveal reveal-delay-2">
+      <p class="message-arabic">
+        بدعوتكم تكتمل فرحتنا،<br>
+        ويسعدنا حضوركم لمشاركتنا أجمل لحظات حياتنا.
+      </p>
+      <div style="margin: 1.5rem 0; color: var(--gold); opacity: 0.4;">— ✦ —</div>
+      <p class="message-english">
+        We joyfully invite you to celebrate the beginning of our forever.<br>
+        Your presence is the greatest gift we could receive.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EVENT DETAILS ═══ -->
+<section id="details">
+  <div class="section-inner">
+    <p class="section-label reveal">Mark Your Calendar</p>
+    <h2 class="section-title reveal reveal-delay-1">Event Details</h2>
+    <div class="ornament-line reveal reveal-delay-1"><span>✦</span></div>
+    <div class="details-grid">
+      <div class="detail-card reveal">
+        <div class="detail-icon">📅</div>
+        <div class="detail-label">Date</div>
+        <div class="detail-value">1 July 2026</div>
+      </div>
+      <div class="detail-card reveal reveal-delay-1">
+        <div class="detail-icon">⏰</div>
+        <div class="detail-label">Time</div>
+        <div class="detail-value">8:00 PM</div>
+      </div>
+      <div class="detail-card reveal reveal-delay-2">
+        <div class="detail-icon">👰</div>
+        <div class="detail-label">Bride</div>
+        <div class="detail-value" style="font-family:'Great Vibes',cursive;font-size:1.8rem;color:var(--gold)">Mariam</div>
+      </div>
+      <div class="detail-card reveal reveal-delay-3">
+        <div class="detail-icon">🤵</div>
+        <div class="detail-label">Groom</div>
+        <div class="detail-value" style="font-family:'Great Vibes',cursive;font-size:1.8rem;color:var(--gold)">Mazen</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LOCATION ═══ -->
+<section id="location">
+  <div class="section-inner">
+    <p class="section-label reveal">Find Us Here</p>
+    <h2 class="section-title reveal reveal-delay-1">Venue &amp; Location</h2>
+    <div class="ornament-line reveal reveal-delay-1"><span>📍</span></div>
+    <div class="map-wrap reveal reveal-delay-2">
+      <!-- Replace with your actual venue coordinates -->
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3452.4872498587556!2d31.350735576568802!3d30.080228816872644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14583f2376d2f8ab%3A0x17cf050f4ee15970!2z2YLYp9i52Kkg2KPZgdix2KfYrSDYp9mE2YXZhNmD2Kkg2KjYr9in2LEg2LbYqNin2Lcg2KfZhNmF2K_Zgdi52YrYqQ!5e0!3m2!1sen!2seg!4v1777324705035!5m2!1sen!2seg" 
+        allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Event Location">
+      </iframe>
+    </div>
+    <!-- Replace the href with your actual Google Maps link -->
+    <a href="https://maps.app.goo.gl/hFaHi71CQ9NPCBjo6" target="_blank" class="map-btn reveal reveal-delay-3">
+      <span>📍</span> Open in Google Maps
+    </a>
+  </div>
+</section>
+
+<!-- ═══ GALLERY ═══ -->
+<section id="gallery">
+  <div class="section-inner">
+    <p class="section-label reveal">Our Story</p>
+    <h2 class="section-title reveal reveal-delay-1">Photo Gallery</h2>
+    <div class="ornament-line reveal reveal-delay-1"><span>◆</span></div>
+    <div class="gallery-grid reveal reveal-delay-2">
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Couple Photo 1">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="/1.webp" alt="Couple Photo 2">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="/2.webp" alt="Couple Photo 3">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="/3.webp" alt="Couple Photo 4">
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="Gallery Photo">
+</div>
+
+<!-- ═══ RSVP ═══ -->
+<!-- <section id="rsvp">
+  <div class="section-inner">
+    <p class="section-label reveal" style="text-align:center">Will You Join Us?</p>
+    <h2 class="section-title reveal reveal-delay-1" style="text-align:center">RSVP</h2>
+    <div class="ornament-line reveal reveal-delay-1"><span>✉</span></div>
+    <div class="rsvp-form reveal reveal-delay-2">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="rsvpName" placeholder="Your name" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="rsvpPhone" placeholder="+20 xxx xxx xxxx" autocomplete="tel">
+      </div>
+      <div class="form-group">
+        <label>Will You Attend?</label>
+        <select id="rsvpAttend">
+          <option value="">— Please select —</option>
+          <option value="yes">✓ Yes, I'll be there!</option>
+          <option value="no">✗ Unfortunately, I can't make it</option>
+        </select>
+      </div>
+      <button class="submit-btn" onclick="submitRSVP()">Send Your Reply</button>
+      <div class="rsvp-success" id="rsvpSuccess">
+        <p style="font-size:2.5rem;color:var(--gold)">♥</p>
+        <p>Thank you! We can't wait to see you.</p>
+        <p style="font-size:0.9rem;color:var(--text-light);font-family:'Montserrat',sans-serif;margin-top:0.5rem">نراكم قريباً إن شاء الله 💛</p>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-names">Mazen &amp; Mariam</div>
+  <p class="footer-message">"We can't wait to celebrate with you."</p>
+  <div class="footer-hearts">
+    <span>♥</span> <span>♥</span> <span>♥</span>
+  </div>
+  <p style="margin-top:2rem;font-size:0.65rem;letter-spacing:0.15em;opacity:0.3;text-transform:uppercase">1 September 2027 · 8:00 PM</p>
+</footer>
+
+<!-- Back to Top -->
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
+
+<script>
+// ─── LOADER ───
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+    startConfetti();
+    setTimeout(stopConfetti, 5000);
+  }, 2500);
+});
+
+// ─── PETALS ───
+(function() {
+  const wrap = document.getElementById('petals');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.width  = (4 + Math.random() * 6) + 'px';
+    p.style.height = (7 + Math.random() * 8) + 'px';
+    p.style.animationDuration = (8 + Math.random() * 12) + 's';
+    p.style.animationDelay   = (Math.random() * 12) + 's';
+    p.style.opacity = 0;
+    wrap.appendChild(p);
+  }
+})();
+
+// ─── FLOATING HEARTS ───
+(function() {
+  const wrap = document.getElementById('floatHearts');
+  const emojis = ['♥','❤','💕','💖'];
+  for (let i = 0; i < 10; i++) {
+    const h = document.createElement('div');
+    h.className = 'fh';
+    h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    h.style.left = Math.random() * 100 + '%';
+    h.style.fontSize = (0.6 + Math.random() * 0.8) + 'rem';
+    h.style.animationDuration = (12 + Math.random() * 16) + 's';
+    h.style.animationDelay   = (Math.random() * 15) + 's';
+    wrap.appendChild(h);
+  }
+})();
+
+// ─── CONFETTI ───
+let confettiRunning = false;
+let confettiAF;
+function startConfetti() {
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const particles = [];
+  const colors = ['#c9a84c','#e8d08a','#f4c5c5','#ffffff','#c97070','#e8a0a0'];
+  for (let i = 0; i < 160; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      r: 2 + Math.random() * 5,
+      d: Math.random() * 160,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      tilt: Math.random() * 10 - 10,
+      tiltAngleIncremental: 0.07 + Math.random() * 0.05,
+      tiltAngle: 0,
+      shape: Math.random() > 0.5 ? 'rect' : 'circle'
+    });
+  }
+  confettiRunning = true;
+  let angle = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    angle += 0.01;
+    particles.forEach((p, i) => {
+      p.tiltAngle += p.tiltAngleIncremental;
+      p.y += (Math.cos(angle + p.d) + 1 + p.r / 2) * 0.9;
+      p.x += Math.sin(angle) * 0.5;
+      p.tilt = Math.sin(p.tiltAngle) * 12;
+      ctx.beginPath();
+      ctx.fillStyle = p.color;
+      if (p.shape === 'circle') {
+        ctx.arc(p.x + p.tilt + p.r / 2, p.y, p.r, 0, Math.PI * 2);
+      } else {
+        ctx.rect(p.x + p.tilt, p.y, p.r * 2, p.r * 1.4);
+      }
+      ctx.closePath();
+      ctx.fill();
+      if (p.y > canvas.height) {
+        p.x = Math.random() * canvas.width;
+        p.y = -10;
+      }
+    });
+    if (confettiRunning) confettiAF = requestAnimationFrame(draw);
+  }
+  draw();
+}
+function stopConfetti() {
+  confettiRunning = false;
+  cancelAnimationFrame(confettiAF);
+  const canvas = document.getElementById('confetti-canvas');
+  canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// ─── COUNTDOWN ───
+//time
+function updateCountdown() {
+  const target = new Date('2026-07-01T20:00:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) {
+    document.getElementById('cDays').textContent  = '000';
+    document.getElementById('cHours').textContent = '00';
+    document.getElementById('cMins').textContent  = '00';
+    document.getElementById('cSecs').textContent  = '00';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const set = (id, val, pad) => {
+    const el = document.getElementById(id);
+    const newVal = String(val).padStart(pad, '0');
+    if (el.textContent !== newVal) {
+      el.classList.add('flip');
+      el.textContent = newVal;
+      setTimeout(() => el.classList.remove('flip'), 250);
+    }
+  };
+  set('cDays',  d, 2);
+  set('cHours', h, 2);
+  set('cMins',  m, 2);
+  set('cSecs',  s, 2);
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ─── SCROLL REVEAL ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── NAVBAR SCROLL ───
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 400);
+});
+
+// ─── THEME TOGGLE ───
+const themeBtn = document.getElementById('themeBtn');
+themeBtn.addEventListener('click', () => {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  themeBtn.textContent = isDark ? '☀' : '☾';
+});
+
+// ─── MUSIC ───
+let musicOn = false;
+const music = document.getElementById('bgMusic');
+document.getElementById('musicBtn').addEventListener('click', () => {
+  musicOn = !musicOn;
+  if (musicOn) { music.play().catch(()=>{}); document.getElementById('musicBtn').textContent = '♫'; }
+  else { music.pause(); document.getElementById('musicBtn').textContent = '♪'; }
+});
+
+// ─── MOBILE MENU ───
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('mobileMenu').classList.toggle('open');
+});
+function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+// ─── LIGHTBOX ───
+function openLightbox(el) {
+  const src = el.querySelector('img').src;
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+
+// ─── RSVP ───
+function submitRSVP() {
+  const name   = document.getElementById('rsvpName').value.trim();
+  const phone  = document.getElementById('rsvpPhone').value.trim();
+  const attend = document.getElementById('rsvpAttend').value;
+  if (!name || !attend) { alert('Please fill in your name and attendance.'); return; }
+  document.querySelector('.rsvp-form form') && null;
+  document.querySelectorAll('.form-group').forEach(g => g.style.display = 'none');
+  document.querySelector('.submit-btn').style.display = 'none';
+  document.getElementById('rsvpSuccess').style.display = 'block';
+}
+
+// ─── RESIZE CONFETTI ───
+window.addEventListener('resize', () => {
+  const c = document.getElementById('confetti-canvas');
+  c.width = window.innerWidth; c.height = window.innerHeight;
+});
+</script>
+</body>
+</html>
