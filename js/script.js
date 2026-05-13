@@ -211,23 +211,6 @@ document
         if (e.target === this) closeLightbox();
     });
 
-// ─── RSVP ───
-function submitRSVP() {
-    const name = document.getElementById("rsvpName").value.trim();
-    const phone = document.getElementById("rsvpPhone").value.trim();
-    const attend = document.getElementById("rsvpAttend").value;
-    if (!name || !attend) {
-        alert("Please fill in your name and attendance.");
-        return;
-    }
-    document.querySelector(".rsvp-form form") && null;
-    document
-        .querySelectorAll(".form-group")
-        .forEach((g) => (g.style.display = "none"));
-    document.querySelector(".submit-btn").style.display = "none";
-    document.getElementById("rsvpSuccess").style.display = "block";
-}
-
 // ─── RESIZE CONFETTI ───
 window.addEventListener("resize", () => {
     const c = document.getElementById("confetti-canvas");
