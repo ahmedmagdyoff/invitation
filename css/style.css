@@ -102,8 +102,8 @@ body {
     transition: all 0.35s;
     position: relative;
     overflow: hidden;
-    opacity: 0;
-    animation: fadeInUp 1s 1.5s forwards;
+    opacity: 1;
+    /* animation: fadeInUp 1.5s forwards; */
 }
 
 .loader-enter-btn::before {
@@ -126,7 +126,7 @@ body {
 }
 
 .loader-enter-btn:disabled {
-    opacity: 0.4;
+    opacity: 0.5;
     cursor: not-allowed;
     border-color: rgba(201, 168, 76, 0.4);
 }
@@ -834,7 +834,7 @@ section {
     font-size: 1.3rem;
     color: var(--text);
     font-weight: 400;
-    /* font-family: Great Vibes; */
+    /* font-family: "Great Vibes", cursive; */
     font-size: 1.8rem;
     /* color: var(--gold); */
 }

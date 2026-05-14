@@ -10,14 +10,12 @@ const bgMusic = document.getElementById("bgMusic");
 
 // Enable button only when audio is ready to play
 bgMusic.addEventListener("canplaythrough", () => {
-    enterBtn.style.animation = "none";
     enterBtn.disabled = false;
     enterBtn.textContent = "Open The Invitation";
 }, { once: true });
 
 // Fallback: if audio loads very fast or is cached
 if (bgMusic.readyState >= 4) {
-    enterBtn.style.animation = "none";
     enterBtn.disabled = false;
     enterBtn.textContent = "Open The Invitation";
 }
