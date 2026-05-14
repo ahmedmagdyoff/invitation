@@ -19,8 +19,8 @@ document.getElementById("loaderEnterBtn").addEventListener("click", () => {
     setTimeout(() => {
         document.getElementById("loader").classList.add("hidden");
         startConfetti();
-        setTimeout(stopConfetti, 8000);
-    }, 8000);
+        setTimeout(stopConfetti, 8500);
+    }, 8500);
 });
 
 // ─── PETALS ───

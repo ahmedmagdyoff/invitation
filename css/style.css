@@ -138,7 +138,7 @@ body {
     height: 100%;
     width: 0;
     background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
-    animation: loadBar 8s forwards ease-in-out;
+    animation: loadBar 8.5s forwards ease-in-out;
 }
 
 @keyframes loadBar {
