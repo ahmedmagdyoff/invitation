@@ -1,3 +1,6 @@
+// ─── LOCK SCROLL DURING LOADING ───
+document.body.style.overflow = "hidden";
+
 // ─── MUSIC STATE ───
 let musicOn = false;
 
@@ -28,9 +31,11 @@ enterBtn.addEventListener("click", () => {
     enterBtn.style.display = "none";
     document.querySelector(".loader-bar").style.display = "block";
 
-    // After 8.5 seconds, hide loader and start confetti
+    // After 8.5 seconds, hide loader, update title, unlock scroll, and start confetti
     setTimeout(() => {
         document.getElementById("loader").classList.add("hidden");
+        document.title = "Mostafa & Haydy \u2014 Engagement Invitation";
+        document.body.style.overflow = "";
         startConfetti();
         setTimeout(stopConfetti, 8500);
     }, 8500);
