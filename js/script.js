@@ -1,10 +1,26 @@
+// ─── MUSIC STATE ───
+let musicOn = false;
+
 // ─── LOADER ───
-window.addEventListener("load", () => {
+document.getElementById("loaderEnterBtn").addEventListener("click", () => {
+    const bgMusic = document.getElementById("bgMusic");
+    bgMusic.volume = 1;
+    bgMusic.muted = false;
+    bgMusic.play().then(() => {
+        musicOn = true;
+        document.getElementById("musicBtn").textContent = "♫";
+    }).catch(() => { });
+
+    // Hide the enter button, start the loading bar
+    document.getElementById("loaderEnterBtn").style.display = "none";
+    document.querySelector(".loader-bar").style.display = "block";
+
+    // After 8 seconds, hide loader and start confetti
     setTimeout(() => {
         document.getElementById("loader").classList.add("hidden");
         startConfetti();
-        setTimeout(stopConfetti, 5000);
-    }, 2500);
+        setTimeout(stopConfetti, 8000);
+    }, 8000);
 });
 
 // ─── PETALS ───
@@ -172,8 +188,7 @@ themeBtn.addEventListener("click", () => {
     themeBtn.textContent = isDark ? "☀" : "☾";
 });
 
-// ─── MUSIC ───
-let musicOn = false;
+// ─── MUSIC TOGGLE ───
 const music = document.getElementById("bgMusic");
 document.getElementById("musicBtn").addEventListener("click", () => {
     musicOn = !musicOn;
