@@ -260,6 +260,10 @@ nav.scrolled {
     background: rgba(201, 168, 76, 0.12);
 }
 
+#musicBtn {
+    display: none;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
