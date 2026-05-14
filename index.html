@@ -7,12 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Great+Vibes&family=Montserrat:wght@300;400;500&family=Amiri:ital,wght@0,400;1,400&display=swap"
       rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -21,8 +17,8 @@
     <div id="loader">
       <!-- <div class="loader-names">Mostafa &amp; Haydy</div> -->
       <div class="loader-hearts">♥ &nbsp; ♥ &nbsp; ♥</div>
-      <button id="loaderEnterBtn" class="loader-enter-btn">
-        Open The Invitation
+      <button id="loaderEnterBtn" class="loader-enter-btn" disabled>
+        Loading...
       </button>
       <div class="loader-bar" style="display: none">
         <div class="loader-bar-fill"></div>
@@ -66,7 +62,7 @@
     </div>
 
     <!-- Background Music -->
-    <audio id="bgMusic">
+    <audio id="bgMusic" preload="auto">
       <source
         src="audio/_مشاهير_تيك_توك _اكسبلور _مالي_خلق_احط_هاشتاقات _كوميدي(MP3)[vocals][cut_11sec].mp3"
         type="audio/mpeg"
@@ -163,23 +159,69 @@
         <div class="details-grid">
           <div class="detail-card reveal">
             <div class="detail-icon">
-              <i class="fa-regular fa-calendar"></i>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 448 512"
+                fill="currentColor"
+              >
+                <path
+                  d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z"
+                />
+              </svg>
             </div>
             <div class="detail-label">Date</div>
             <div class="detail-value">13 June 2026</div>
           </div>
           <div class="detail-card reveal reveal-delay-1">
-            <div class="detail-icon"><i class="fa-regular fa-clock"></i></div>
+            <div class="detail-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 512 512"
+                fill="currentColor"
+              >
+                <path
+                  d="M464 256A208 208 0 1 1 48 256a208 208 0 1 1 416 0zM0 256a256 256 0 1 0 512 0A256 256 0 1 0 0 256zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"
+                />
+              </svg>
+            </div>
             <div class="detail-label">Time</div>
             <div class="detail-value">8:00 PM</div>
           </div>
           <div class="detail-card reveal reveal-delay-2">
-            <div class="detail-icon"><i class="fa-solid fa-user-tie"></i></div>
+            <div class="detail-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 448 512"
+                fill="currentColor"
+              >
+                <path
+                  d="M224 0c-17.7 0-32 14.3-32 32V51.2C119 66 64 130.6 64 208v18.8c0 47-17.3 92.4-48.5 127.6l-7.4 8.3c-8.4 9.4-10.4 22.9-5.3 34.4S19.4 416 32 416H416c12.6 0 24-7.4 29.2-18.9s3.1-25-5.3-34.4l-7.4-8.3C401.3 319.2 384 273.9 384 226.8V208c0-77.4-55-142-128-156.8V32c0-17.7-14.3-32-32-32zm45.3 493.3c12-12 18.7-28.3 18.7-45.3H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7z"
+                />
+              </svg>
+            </div>
             <div class="detail-label">Groom</div>
             <div class="detail-value">Mostafa</div>
           </div>
           <div class="detail-card reveal reveal-delay-3">
-            <div class="detail-icon"><i class="fa-solid fa-user"></i></div>
+            <div class="detail-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 512 512"
+                fill="currentColor"
+              >
+                <path
+                  d="M256 288A144 144 0 1 0 256 0a144 144 0 1 0 0 288zm-94.7 32C72.2 320 0 392.2 0 481.3c0 17 13.8 30.7 30.7 30.7H481.3c17 0 30.7-13.8 30.7-30.7C512 392.2 439.8 320 350.7 320H161.3z"
+                />
+              </svg>
+            </div>
             <div class="detail-label">Bride</div>
             <div class="detail-value">Haydy</div>
           </div>

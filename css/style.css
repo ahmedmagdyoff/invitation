@@ -117,12 +117,18 @@ body {
     z-index: -1;
 }
 
-.loader-enter-btn:hover {
+.loader-enter-btn:hover:not(:disabled) {
     color: #1a0f0f;
 }
 
-.loader-enter-btn:hover::before {
+.loader-enter-btn:hover:not(:disabled)::before {
     transform: scaleX(1);
+}
+
+.loader-enter-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    border-color: rgba(201, 168, 76, 0.4);
 }
 
 .loader-bar {

@@ -2,20 +2,33 @@
 let musicOn = false;
 
 // ─── LOADER ───
-document.getElementById("loaderEnterBtn").addEventListener("click", () => {
-    const bgMusic = document.getElementById("bgMusic");
+const enterBtn = document.getElementById("loaderEnterBtn");
+const bgMusic = document.getElementById("bgMusic");
+
+// Enable button only when audio is ready to play
+bgMusic.addEventListener("canplaythrough", () => {
+    enterBtn.disabled = false;
+    enterBtn.textContent = "Open The Invitation";
+}, { once: true });
+
+// Fallback: if audio loads very fast or is cached
+if (bgMusic.readyState >= 4) {
+    enterBtn.disabled = false;
+    enterBtn.textContent = "Open The Invitation";
+}
+
+enterBtn.addEventListener("click", () => {
     bgMusic.volume = 1;
     bgMusic.muted = false;
     bgMusic.play().then(() => {
         musicOn = true;
-        document.getElementById("musicBtn").textContent = "♫";
     }).catch(() => { });
 
     // Hide the enter button, start the loading bar
-    document.getElementById("loaderEnterBtn").style.display = "none";
+    enterBtn.style.display = "none";
     document.querySelector(".loader-bar").style.display = "block";
 
-    // After 8 seconds, hide loader and start confetti
+    // After 8.5 seconds, hide loader and start confetti
     setTimeout(() => {
         document.getElementById("loader").classList.add("hidden");
         startConfetti();
@@ -23,10 +36,10 @@ document.getElementById("loaderEnterBtn").addEventListener("click", () => {
     }, 8500);
 });
 
-// ─── PETALS ───
+// ─── PETALS (light) ───
 (function () {
     const wrap = document.getElementById("petals");
-    for (let i = 0; i < 18; i++) {
+    for (let i = 0; i < 8; i++) {
         const p = document.createElement("div");
         p.className = "petal";
         p.style.left = Math.random() * 100 + "%";
@@ -39,11 +52,11 @@ document.getElementById("loaderEnterBtn").addEventListener("click", () => {
     }
 })();
 
-// ─── FLOATING HEARTS ───
+// ─── FLOATING HEARTS (light) ───
 (function () {
     const wrap = document.getElementById("floatHearts");
-    const emojis = ["♥", "❤", "💕", "💖"];
-    for (let i = 0; i < 10; i++) {
+    const emojis = ["♥", "❤"];
+    for (let i = 0; i < 5; i++) {
         const h = document.createElement("div");
         h.className = "fh";
         h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
@@ -72,7 +85,7 @@ function startConfetti() {
         "#c97070",
         "#e8a0a0",
     ];
-    for (let i = 0; i < 160; i++) {
+    for (let i = 0; i < 80; i++) {
         particles.push({
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height - canvas.height,
