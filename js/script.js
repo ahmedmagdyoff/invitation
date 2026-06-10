@@ -8,17 +8,20 @@ let musicOn = false;
 const enterBtn = document.getElementById("loaderEnterBtn");
 const bgMusic = document.getElementById("bgMusic");
 
+function enableButton() {
+    if (enterBtn.disabled) {
+        enterBtn.disabled = false;
+        enterBtn.textContent = "Open The Invitation";
+    }
+}
+
 // Enable button only when audio is ready to play
-bgMusic.addEventListener("canplaythrough", () => {
-    enterBtn.disabled = false;
-    enterBtn.textContent = "Open The Invitation";
-}, { once: true });
+bgMusic.addEventListener("canplaythrough", enableButton, { once: true });
 
 // Fallback: if audio loads very fast or is cached
-if (bgMusic.readyState >= 4) {
-    enterBtn.disabled = false;
-    enterBtn.textContent = "Open The Invitation";
-}
+if (bgMusic.readyState >= 4) enableButton();
+
+setTimeout(enableButton, 5000);
 
 enterBtn.addEventListener("click", () => {
     bgMusic.volume = 1;
