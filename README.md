@@ -9,7 +9,7 @@
 
 ### Elegant digital invitation website for weddings and engagements.
 
-A modern, responsive invitation website featuring countdown, gallery, music, location, and beautiful animations.
+A modern, responsive invitation website featuring countdown, gallery, audio, location, and beautiful animations.
 
 [🌍 Live Website](https://invitation.ahmedmagdy.cloud)
 
@@ -29,7 +29,7 @@ It provides guests with all event information in an elegant, responsive, and int
 
 - 💍 Elegant Invitation Landing Page
 - ⏳ Live Countdown Timer
-- 🎵 Background Music
+- 🎵 Background Audio
 - 🖼 Photo Gallery
 - 📍 Google Maps Integration
 - 🌗 Light / Dark Mode
