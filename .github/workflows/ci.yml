@@ -24,7 +24,7 @@ jobs:
       - name: Verify Required Files
         run: |
           test -f index.html
-          test -f css/styles.css
+          test -f css/style.css
           test -f js/script.js
 
       - name: Success
