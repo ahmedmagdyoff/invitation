@@ -1,17 +1,17 @@
 <div align="center">
 
-# 🎓 Thebes ICPC
+# 💍 Invitation
 
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)](https://developer.mozilla.org/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)](https://developer.mozilla.org/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/docs/Web/JavaScript)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-### Official website for Thebes ICPC Community.
+### Elegant digital invitation website for weddings and engagements.
 
-A modern and responsive website introducing the **Thebes ICPC Community**, its mission, activities, and programming culture.
+A modern, responsive invitation website featuring countdown, gallery, music, location, and beautiful animations.
 
-[🌍 Live Website](https://thebes-icpc.site)
+[🌍 Live Website](https://invitation.ahmedmagdy.cloud)
 
 </div>
 
@@ -19,21 +19,22 @@ A modern and responsive website introducing the **Thebes ICPC Community**, its m
 
 # 📖 About
 
-Thebes ICPC is the official website of the **Thebes ICPC Community**.
+Invitation is a modern digital invitation website designed for weddings, engagements, and special events.
 
-The website introduces the community, highlights its goals, showcases events and activities, and provides an easy way for students to learn more about competitive programming.
+It provides guests with all event information in an elegant, responsive, and interactive experience.
 
 ---
 
 # ✨ Features
 
-- 🎓 Community Introduction
-- 🏆 ICPC Information
-- 📅 Events Section
-- 👥 Team Section
+- 💍 Elegant Invitation Landing Page
+- ⏳ Live Countdown Timer
+- 🎵 Background Music
+- 🖼 Photo Gallery
+- 📍 Google Maps Integration
+- 🌗 Light / Dark Mode
 - 📱 Fully Responsive Design
-- ⚡ Fast Loading
-- 🎨 Modern UI
+- ⚡ Smooth Animations
 
 ---
 
@@ -50,13 +51,13 @@ The website introduces the community, highlights its goals, showcases events and
 Clone the repository.
 
 ```bash
-git clone https://github.com/ahmedmagdyoff/thebes-icpc.git
+git clone https://github.com/ahmedmagdyoff/invitation.git
 ```
 
 Open the project.
 
 ```bash
-cd thebes-icpc
+cd invitation
 ```
 
 Run the website using any static web server, or simply open `index.html` in your browser.
@@ -67,10 +68,10 @@ Run the website using any static web server, or simply open `index.html` in your
 
 ```text
 .
-├── assets/
-│   ├── css/
-│   ├── images/
-│   └── js/
+├── audio/
+├── css/
+├── images/
+├── js/
 ├── index.html
 └── README.md
 ```
@@ -83,7 +84,7 @@ Deployment is fully automated using **GitHub Actions**.
 
 Every push to the `main` branch triggers:
 
-- ✅ Project Check
+- ✅ Build Check
 - 🚀 VPS Deployment
 
 ---
